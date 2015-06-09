@@ -17,11 +17,11 @@ function doGet (e) {
   
 // pattern for drive sdk
   if (e.parameter.package === "script") {
-    return doGetPattern(e, constructConsentScreen, doSomething, 'script') ;
+    return doGetPattern(e, constructConsentScreen, doSomething, 'script', e) ;
   }
   else {
 // pattern for github
-    return doGetPattern(e, constructConsentScreenGit, doSomething, 'gasgit') ;
+    return doGetPattern(e, constructConsentScreenGit, doSomething, 'gasgit',e) ;
   }
 }
 
