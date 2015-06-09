@@ -3,11 +3,22 @@
  * this is your main processing - will be called with your access token
  * @param {string} accessToken - the accessToken
  */
-function doSomething (accessToken) {
- 
-  return HtmlService.createTemplateFromFile('index.html')
+function doSomething (accessToken, e) {
+
+  var index = HtmlService.createTemplateFromFile('index.html')
+      .evaluate()
+      .getContent();
+
+  var html =  
+    HtmlService.createTemplate(index + "<script>\ndoIt(" +
+      JSON.stringify({
+        "params":e,
+      }) +
+      ");\n</script>")
       .evaluate()
       .setSandboxMode(HtmlService.SandboxMode.IFRAME)
-      .setTitle('Library Tree');
+      .setTitle('Dependency force');      
+
+  return html;
 
 }
