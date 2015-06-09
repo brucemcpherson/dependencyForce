@@ -3,7 +3,7 @@
 */
 var Client = (function(client) {
 
-  client.getData = function () {
+  client.getData = function (params) {
 
     spinCursor();
     
@@ -18,7 +18,7 @@ var Client = (function(client) {
         resetCursor();
         D3Force.initialize(result.data.content).render();
     })
-    .getData();
+    .getData(params);
   };
   
   function resetCursor() {
