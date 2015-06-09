@@ -37,38 +37,47 @@ var Infos = (function(infos){
   
   /**
    * get all the scripts on drive belonging to me
-   * @param {string} startingFolder optional starting folder
+   * @param {object} e this is what was passed to teh web app
    * @return {object} a standard drivejsonapi result
    */
-  infos.getAllTheInfos = function (startingFolder) {
+  infos.getAllTheInfos = function (e) {
+    
+
+    var startingFolder = e && e.params && e.params.parameter && e.params.parameter.start ? e.params.parameter.start : Settings.EXTRACT.TO;
+    var noCache = e && e.params && e.params.parameter && e.params.parameter.nocache;
+
     
     // get the folder where the scripts start from
-    var scriptRoot = infos.dapi.getFolderFromPath (startingFolder || Settings.EXTRACT.TO);
+    var scriptRoot = infos.dapi.getFolderFromPath (startingFolder);
+    if(!scriptRoot) {
+      throw 'could not find starting folder for infos ' + startingFolder;
+    }
     
    // we can use cache
-    var cacheHandler = new cCacheHandler.CacheHandler(120,'dependencyForce',true);
-    var cached = cacheHandler.getCache(scriptRoot.id);
-    if (cached) return cached;
-
+    var result,cacheHandler;
+    cacheHandler = new cCacheHandler.CacheHandler(3600,'dependencyForce',true);    
     
-    if(!scriptRoot) {
-      throw 'could not find starting folder for infos ' + Settings.EXTRACT.TO;
+    if (!noCache) { 
+      result = cacheHandler.getCache(scriptRoot.id);
     }
     
-    // get all the info.jsons below this
-    var result = infos.dapi.getRecursiveChildItems (scriptRoot.id, undefined ,  "title='"+Settings.ENUMS.FILES.INFO+"'");
-
+    if (!result) {
+      // get all the info.jsons below this
+      result = infos.dapi.getRecursiveChildItems (scriptRoot.id, undefined ,  "title='"+Settings.ENUMS.FILES.INFO+"'");
+  
+      if (result.success) {
+        result.data.content = result.data.items.map (function (d) {
+          var r = infos.getInfoContent (d.id, Settings.EXTRACT.TO);
+          if (!r.success || !r.data) {
+            throw 'failed to get info content for ' + d.id;
+          }
+          return r.data;
+        });
+      }
+    }    
     if (result.success) {
-      result.data.content = result.data.items.map (function (d) {
-        var r = infos.getInfoContent (d.id, Settings.EXTRACT.TO);
-        if (!r.success || !r.data) {
-          throw 'failed to get info content for ' + d.id;
-        }
-        return r.data;
-      });
+      cacheHandler.putCache (result,scriptRoot.id);
     }
-        
-    cacheHandler.putCache (result,scriptRoot.id);
     return result;
 
   };
