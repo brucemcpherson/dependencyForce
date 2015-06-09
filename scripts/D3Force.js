@@ -95,29 +95,18 @@ var D3Force = (function (d3Force) {
         var nodes = [],
             links = [];
 
-        data.forEach(function (d) {
-
+        (data || []).forEach(function (d) {
+         
             var node = {
                 name: d.title,
                 label: d.title,
                 linkName: d.title,
                 group: 'project'
             };
-
+ 
             var sk = findOrAddNode(node, nodes);
-            
-            /*
-      {
-                    "sdc": "d8d42f7881bec99d",
-                    "development": false,
-                    "library": "cDriverSheet",
-                    "known": true,
-                    "identifier": "cDriverSheet",
-                    "key": "Mrckbr9_w7PCphJtOzhzA_Cz3TLx7pV4j",
-                    "version": "5"
-                },
-                */
-            d.dependencies.forEach(function (e) {
+
+            (d.dependencies || []).forEach(function (e) {
 
                 var lib = {
                     name: 'k' + Utils.checksum(e),
