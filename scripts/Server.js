@@ -2,11 +2,11 @@
 
 /**
  * this is called to get all the info file data for all known scripts
- * @param {string} start optional path to start looking for info files
+ * @param {object} params this is what was passed to the the webapp
  * @return {object[]} the info files
  */
-function getData(start) {
-  return Server.getInfos(start);
+function getData(params) {
+  return Server.getInfos(params);
 }
 
 /**
@@ -15,8 +15,8 @@ function getData(start) {
 var Server = (function (server) {
   'use strict';
   
-  server.getInfos = function (start) {
-    return Infos.initialize().getAllTheInfos (start);
+  server.getInfos = function (params) {
+    return Infos.initialize().getAllTheInfos (params);
   };
   
   return server;
