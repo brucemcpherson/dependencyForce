@@ -1,0 +1,38 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.96.1/css/materialize.min.css">
+<!-- my local styles -->
+<?!= HtmlService.createHtmlOutputFromFile('App.css').getContent(); ?>
+<?!= HtmlService.createHtmlOutputFromFile('Home.css').getContent(); ?>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+
+
+<?!= requireGs(['Client','App','Utils','D3Force']);  ?>
+<?!= requireJs(['main']);  ?>
+
+<div id="container" class="container">
+  
+<div class="card-panel indigo darken-4">
+  <h5 class="grey-text text-lighten-5">Visualizing Apps Script library dependencies</h5>
+  <span class="grey-text text-lighten-5">
+  For details see <a href="http://ramblings.mcpher.com/Home/excelquirks/drivesdk/gettinggithubready">desktop liberation</a>.
+  Built with <a href="http://d3js.org/">d3.js</a> 
+ </span>
+</div>  
+<div>
+
+</div>
+
+  <div class="valign-wrapper">
+    <div id="spinner" class="valign spinner">
+        <img src="https://googledrive.com/host/0B92ExLh4POiZfkZsSDMwaHZUV3hneWdEbVV5aWVqenpWNjYtc29oYUZyYzVKVE50eFBMQm8/ajax-loader.gif" />
+    </div>
+    <div id="chart" class="chart"></div>
+</div>
+
+
+
+
