@@ -1,5 +1,5 @@
 # Google Apps Script Project: dependencyForce
-This repo (dependencyForce) was automatically updated on 09 June 2015 14:53:19 BST by GasGit
+This repo (dependencyForce) was automatically updated on 09 June 2015 19:05:42 BST by GasGit
 
 For more information see the [desktop liberation site](http://ramblings.mcpher.com/Home/excelquirks/drivesdk/gettinggithubready "desktop liberation") or [contact me on G+](https://plus.google.com/+BruceMcpherson "Bruce McPherson - GDE")
 ## Details for Apps Script project dependencyForce
