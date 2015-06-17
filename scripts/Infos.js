@@ -54,11 +54,11 @@ var Infos = (function(infos){
     }
     
    // we can use cache
-    var result,cacheHandler;
-    cacheHandler = new cCacheHandler.CacheHandler(3600,'dependencyForce',true);    
+    var result,cacheHandler,cached;
+    cacheHandler = new cCacheHandler.CacheHandler(4*60*60,'dependencyForce',true);    
     
     if (!noCache) { 
-      result = cacheHandler.getCache(scriptRoot.id);
+      cached = result = cacheHandler.getCache(scriptRoot.id);
     }
     
     if (!result) {
@@ -78,6 +78,7 @@ var Infos = (function(infos){
     if (result.success) {
       cacheHandler.putCache (result,scriptRoot.id);
     }
+    result.cached = {hit: cached ? true : false , noCache:noCache}
     return result;
 
   };
