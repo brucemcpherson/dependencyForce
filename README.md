@@ -7,4 +7,4 @@ dependencyForce can be used to create a visualization of Apps Script Library dep
 
 Here's a screenshot of the output 
 
-![Screenshot](https://googledrive.com/host/0B92ExLh4POiZfkZsSDMwaHZUV3hneWdEbVV5aWVqenpWNjYtc29oYUZyYzVKVE50eFBMQm8/vizgas.png)
+![Screenshot](https://storage.googleapis.com/goinggas.com/public/hosting/sites/xliberation/image/vizgas.png)
