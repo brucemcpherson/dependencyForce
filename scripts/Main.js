@@ -17,7 +17,8 @@ function doSomething (accessToken, e) {
       ");\n</script>")
       .evaluate()
       .setSandboxMode(HtmlService.SandboxMode.IFRAME)
-      .setTitle('Dependency force');      
+      .setTitle('Dependency force')
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);      
 
   return html;
 
