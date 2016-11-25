@@ -55,7 +55,7 @@ var Infos = (function(infos){
     
    // we can use cache
     var result,cacheHandler,cached;
-    cacheHandler = new cCacheHandler.CacheHandler(4*60*60,'dependencyForce',true);    
+    cacheHandler = new cCacheHandler.CacheHandler(Settings.ENUMS.CACHE.EXPIRATION,'dependencyForce',true);    
     
     if (!noCache) { 
       cached = result = cacheHandler.getCache(scriptRoot.id);
