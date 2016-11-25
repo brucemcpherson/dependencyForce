@@ -1,4 +1,15 @@
-
+/**
+ * runs every now and again to keep cache fresh
+ */
+function triggerCache () {
+  return Infos.initialize().getAllTheInfos();
+}
+/**
+ * trigger once a day
+ */
+function triggerNoCache () {
+  return Infos.initialize().getAllTheInfos({parameter:{nocache:1}});
+}
 /**
  * this is your main processing - will be called with your access token
  * @param {string} accessToken - the accessToken
