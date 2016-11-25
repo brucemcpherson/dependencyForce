@@ -3,6 +3,10 @@ var Settings = (function(settings) {
 
   settings.ENUMS = {
     
+    CACHE: {
+      EXPIRATION:21000
+    },
+    
     TYPES: {  // extensiona to apply to script types
       server_js:"js",  
       html:"html"
